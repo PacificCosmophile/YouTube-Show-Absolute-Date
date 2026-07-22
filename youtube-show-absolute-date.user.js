@@ -8,7 +8,7 @@
 // @match        https://www.youtube.com/*
 // @homepageURL  https://github.com/PacificCosmophile/youtube-show-absolute-date
 // @supportURL   https://github.com/PacificCosmophile/youtube-show-absolute-date/issues
-// @icon         https://www.youtube.com/s/desktop/aaaab8bf/img/favicon_144x144.png
+// @icon         https://raw.githubusercontent.com/PacificCosmophile/YouTube-Show-Absolute-Date/main/icon.png
 // @grant        none
 // ==/UserScript==
 
