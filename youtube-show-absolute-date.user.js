@@ -7,7 +7,8 @@
 // @license      MIT
 // @match        https://www.youtube.com/*
 // @homepageURL  https://github.com/PacificCosmophile/youtube-show-absolute-date
-// @supportURL   https://github.com/PacificCosmophile/youtube-show-absolute-date/issues
+// @downloadURL  https://update.greasyfork.org/scripts/588066/YouTube%20Show%20Absolute%20Date.user.js
+// @updateURL    https://update.greasyfork.org/scripts/588066/YouTube%20Show%20Absolute%20Date.meta.js
 // @icon         https://raw.githubusercontent.com/PacificCosmophile/YouTube-Show-Absolute-Date/main/icon.png
 // @grant        none
 // ==/UserScript==
