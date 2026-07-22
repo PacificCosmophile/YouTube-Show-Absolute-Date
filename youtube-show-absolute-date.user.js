@@ -2,7 +2,7 @@
 // @name         YouTube Show Absolute Date
 // @namespace    https://github.com/PacificCosmophile
 // @description  Replaces relative upload dates ("2 years ago") with absolute dates across YouTube.
-// @version      1.1
+// @version      1.2
 // @author       PacificCosmophile+Vibecoded
 // @license      MIT
 // @match        https://www.youtube.com/*
