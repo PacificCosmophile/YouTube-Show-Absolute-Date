@@ -31,7 +31,6 @@
 - [🌐 Compatibility](#-compatibility)
 - [🔒 Privacy](#-privacy)
 - [🙏 Acknowledgements](#-acknowledgements)
-- [🤝 Contributing](#-contributing)
 - [📜 License](#-license)
 </details>
 
@@ -173,12 +172,6 @@ Inspired by previous community userscripts:
 -   **[YouTube Precise Date Display Fixed](https://greasyfork.org/en/scripts/567066)** by **Homebrew Runner**
 
 
-🤝 Contributing
----------------
-
-Contributions, feature requests, and bug reports are welcome!
-
-If YouTube updates its layout and causes an element date to stop updating, please open an **[Issue](https://github.com/PacificCosmophile/YouTube-Show-Absolute-Date/issues)**.
 
 📜 License
 ----------
