@@ -1,5 +1,20 @@
 # Changelog
 
+## 1.1
+
+### Improved
+- Improved watch page date detection.
+- Improved date formatter performance.
+- Improved video ID extraction logic.
+
+### Fixed
+- Fixed duplicate dates appearing on watch pages.
+- Fixed incorrect date replacements in dynamic layouts.
+
+### Optimized
+- Reduced unnecessary date formatter creation.
+- Minor performance and stability improvements.
+
 ## 1.0
 
 - Initial release
