@@ -27,13 +27,13 @@
 - [📍 Supported Locations](#-supported-locations)
 - [💡 Example](#-example)
 - [🚀 Quick Installation](#-quick-installation)
-- [⚙️ Configuration](#configuration)
-- [🛠️ How It Works](#how-it-works)
-- [🌐 Compatibility](#compatibility)
-- [🔒 Privacy](#privacy)
-- [🙏 Acknowledgements](#acknowledgements)
-- [🤝 Contributing](#contributing)
-- [📜 License](#license)
+- [⚙️ Configuration](#️-configuration)
+- [🛠️ How It Works](#️-how-it-works)
+- [🌐 Compatibility](#-compatibility)
+- [🔒 Privacy](#-privacy)
+- [🙏 Acknowledgements](#-acknowledgements)
+- [🤝 Contributing](#-contributing)
+- [📜 License](#-license)
 </details>
 
 ---
@@ -108,7 +108,8 @@
 
 ---
 
-## Configuration
+⚙️ Configuration
+----------------
 
 Inside the script:
 
@@ -123,78 +124,67 @@ var USE_12_HOUR = true;
 
 ---
 
-## How it Works
+🛠️ How It Works
+----------------
 
-The userscript retrieves each video's upload date directly from YouTube's internal API using your existing browser session.
+The userscript fetches precise upload timestamps directly from YouTube's internal responses using your active session context and seamlessly updates the UI text nodes.
 
-It then replaces YouTube's relative timestamps (such as "2 years ago") with locale-aware absolute dates while preserving YouTube's original layout.
+-   **DOM Mutation Observer:** Detects dynamically loaded components as you scroll or navigate without requiring hard page reloads.
 
-To remain lightweight, the script uses:
+-   **In-Memory Caching:** Stores fetched dates locally during your session to minimize network requests and CPU load.
 
-- Smart response caching
-- Duplicate request prevention
-- Automatic support for YouTube's dynamic page navigation
+-   **Native Layout Preservation:** Swaps text values only, preserving YouTube's original CSS classes, styling, and structural elements.
 
----
+🌐 Compatibility
+----------------
 
-## Compatibility
+### Supported Script Managers
 
-| YouTube Section | Supported |
-|-----------------|-----------|
-| Home | ✅ |
-| Search | ✅ |
-| Watch | ✅ |
-| Playlists | ✅ |
-| Shorts | ✅ |
-| Channel Videos | ✅ |
-| Recommendations | ✅ |
-| End Screen | ✅ |
+-   ✅ **Violentmonkey** (Fully tested & recommended)
 
-Compatible with:
+-   ✅ **Greasemonkey**
 
-- ✔ Violentmonkey
-- ✔ Greasemonkey
-- ✔ Tampermonkey
+-   ✅ **Tampermonkey**
 
----
 
-## Privacy
+### Supported Browsers
 
-This userscript:
+-   ✅ **Chromium**, **Firefox**, **Edge**, **Helium**, **Waterfox**, **Floorp** (via Violentmonkey/Greasemonkey/Tampermonkey)
 
-- ❌ Collects no data
-- ❌ Sends nothing to third-party servers
-- ❌ Uses no analytics
-- ❌ Requires no API keys
+🔒 Privacy
+----------
 
-All requests are made directly to YouTube.
+This userscript is built with a zero-telemetry approach:
 
----
+-   ❌ **No Data Collection:** Zero tracking, logging, or analytics.
 
-## Acknowledgements
+-   ❌ **No Third-Party Requests:** All requests stay strictly between your browser and YouTube.
 
-This project was inspired by the following community userscripts:
+-   ❌ **No API Keys Required:** Works out of the box using your active YouTube session.
 
-- **[YouTube Date Display](https://greasyfork.org/scripts/561532)** by **kor-bim**
-- **[YouTube Precise Date Display Fixed](https://greasyfork.org/en/scripts/567066)** by **Homebrew Runner**
+-   ❌ **Zero External Dependencies:** Built with clean, native JavaScript.
 
-Their work helped inspire the development of this userscript. This project has since been independently rewritten and expanded with broader YouTube support, locale-aware formatting, improved caching, and compatibility with modern YouTube layouts.
+🙏 Acknowledgements
+-------------------
 
-Many thanks to both authors for their contributions to the userscript community.
+Inspired by previous community userscripts:
 
----
+-   **[YouTube Date Display](https://greasyfork.org/scripts/561532)** by **kor-bim**
 
-## Contributing
+-   **[YouTube Precise Date Display Fixed](https://greasyfork.org/en/scripts/567066)** by **Homebrew Runner**
 
-Issues, feature requests and pull requests are welcome.
 
-If YouTube changes its layout and something breaks, feel free to open an [issue](https://github.com/PacificCosmophile/YouTube-Show-Absolute-Date/issues).
+🤝 Contributing
+---------------
 
----
+Contributions, feature requests, and bug reports are welcome!
 
-## License
+If YouTube updates its layout and causes an element date to stop updating, please open an **[Issue](https://github.com/PacificCosmophile/YouTube-Show-Absolute-Date/issues)**.
 
-[MIT License](https://opensource.org/licenses/MIT)
+📜 License
+----------
+
+Distributed under the [MIT License](https://opensource.org/licenses/MIT).
 
 ---
 
