@@ -1,3 +1,7 @@
+<div align="center">
+
+<img src="https://raw.githubusercontent.com/PacificCosmophile/YouTube-Show-Absolute-Date/main/icon.png" width="100" height="100" alt="YouTube Show Absolute Date Logo">
+  
 <h1 align="center">YouTube Show Absolute Date</h1>
 
 <p align="center">
@@ -15,6 +19,8 @@
   <img src="https://img.shields.io/badge/platform-YouTube-red?logo=youtube" alt="Platform">
   <img src="https://img.shields.io/badge/userscript-Violentmonkey%20%7C%20Greasemonkey%20%7C%20Tampermonkey-blue" alt="Userscript Engine">
 </p>
+
+</div>
 
 ---
 
