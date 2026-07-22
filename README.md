@@ -1,79 +1,110 @@
-# YouTube Show Absolute Date
+<h1 align="center">YouTube Show Absolute Date</h1>
 
-Replace YouTube's relative upload dates (like **"2 years ago"**) with precise, locale-aware **absolute dates** across YouTube.
+<p align="center">
+  Replace YouTube's vague relative upload dates (<b>"2 years ago"</b>) with precise, locale-aware <b>absolute dates</b> across the entire platform.
+</p>
 
-![License](https://img.shields.io/badge/license-MIT-green)
-![Platform](https://img.shields.io/badge/platform-YouTube-red)
-![Userscript](https://img.shields.io/badge/userscript-Violentmonkey-blue)
-![Version](https://img.shields.io/badge/version-1.0-orange)
+<p align="center">
+  <a href="https://greasyfork.org/en/scripts/588066">
+    <img src="https://img.shields.io/badge/Install%20Script-GreasyFork-red?style=for-the-badge&logo=greasyfork" alt="Install from GreasyFork">
+  </a>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/license-MIT-green" alt="License">
+  <img src="https://img.shields.io/badge/platform-YouTube-red?logo=youtube" alt="Platform">
+  <img src="https://img.shields.io/badge/userscript-Violentmonkey%20%7C%20Greasemonkey%20%7C%20Tampermonkey-blue" alt="Userscript Engine">
+  <img src="https://img.shields.io/badge/version-1.0-orange" alt="Version">
+</p>
+
+---
+
+<details>
+  <summary><b>Table of Contents</b> (click to expand)</summary>
+
+- [✨ Features](#-features)
+- [📸 Screenshots](#-screenshots)
+- [📍 Supported Locations](#-supported-locations)
+- [💡 Example](#-example)
+- [🚀 Quick Installation](#-quick-installation)
+- [⚙️ Configuration](#configuration)
+- [🛠️ How It Works](#how-it-works)
+- [🌐 Compatibility](#compatibility)
+- [🔒 Privacy](#privacy)
+- [🙏 Acknowledgements](#acknowledgements)
+- [🤝 Contributing](#contributing)
+- [📜 License](#license)
+</details>
 
 ---
 
 ## ✨ Features
 
-- 📅 Replaces **relative upload dates** with **absolute dates**
-- 🌍 Uses your browser's locale automatically
-- 🕒 Supports both **12-hour** and **24-hour** time formats
-- ⚡ Fast and lightweight
-- 🔒 No external APIs or API keys required
-- 💾 Smart caching to minimize network requests
+- 📅 **Absolute Timestamps:** Replaces relative dates like "3 months ago" with exact dates and times.
+- 🌍 **Locale-Aware:** Automatically formats dates according to your browser's language and regional settings.
+- 🕒 **12-Hour / 24-Hour Support:** Configurable time formats to suit your preference.
+- ⚡ **Lightweight & Fast:** Optimized for YouTube's Single Page Application (SPA) dynamic navigation.
+- 🔒 **Privacy-First:** Zero external API calls, analytics, or third-party tracking.
+- 💾 **Smart Caching:** Efficiently caches metadata to prevent redundant requests.
 
 ---
 
-## Supported Locations
+## 📸 Screenshots
 
-| Location | Format |
-|----------|--------|
-| Watch page description | ✅ `4 Sep 2026, 11:15 pm` |
-| Home | ✅ `4 Sep 2026, 11:15 pm` |
-| Search | ✅ `4 Sep 2026, 11:15 pm` |
-| Channel videos | ✅ `4 Sep 2026, 11:15 pm` |
-| Playlist page | ✅ `4 Sep 2026, 11:15 pm` |
-| Playlist cards | ✅ `4 Sep 2026, 11:15 pm` |
-| Shorts player | ✅ `4 Sep 2026, 11:15 pm` |
-| Shorts thumbnails | ✅ `4 Sep 2026, 11:15 pm` |
-| End screen recommendations | ✅ `4 Sep 2026, 11:15 pm` |
-| Watch page right sidebar | ✅ `4 Sep 2026` |
+| Home Page | Watch Page |
+| :---: | :---: |
+| ![](screenshots/Home.png) | ![](screenshots/Watch.png) |
 
----
+| Playlists | Shorts |
+| :---: | :---: |
+| ![](screenshots/Playlists.png) | ![](screenshots/Shorts.png) |
 
-## Example
-
-### Before
-
-```
-3 years ago
-11 months ago
-2 weeks ago
-Yesterday
-```
-
-### After
-
-```
-12 Jul 2022, 10:15 pm
-5 Sep 2024, 6:30 pm
-10 Jun 2026, 8:00 am
-8 Jul 2026, 5:42 pm
-```
+| Search Results | Live Streams |
+| :---: | :---: |
+| ![](screenshots/Search.png) | ![](screenshots/Live.png) |
 
 ---
 
-## Installation
+## 📍 Supported Locations
 
-### Step 1
+| Location | Example Output |
+| :--- | :--- |
+| **Watch page description** | `4 Sep 2026, 11:15 pm` |
+| **Home feed** | `4 Sep 2026, 11:15 pm` |
+| **Search results** | `4 Sep 2026, 11:15 pm` |
+| **Channel videos grid** | `4 Sep 2026, 11:15 pm` |
+| **Playlist page & cards** | `4 Sep 2026, 11:15 pm` |
+| **Shorts player & thumbnails** | `4 Sep 2026, 11:15 pm` |
+| **End screen recommendations** | `4 Sep 2026, 11:15 pm` |
+| **Watch page right sidebar** | `4 Sep 2026` |
 
-Install a userscript manager:
+---
 
-- [Violentmonkey](https://violentmonkey.github.io/) (Recommended)
-- [Greasemonkey](https://www.greasespot.net/)
-- [Tampermonkey](https://www.tampermonkey.net/)
+## 💡 Example
 
-### Step 2
+| YouTube Default (Before) | With Script (After) |
+| :--- | :--- |
+| `3 years ago` | `12 Jul 2022, 10:15 pm` |
+| `11 months ago` | `5 Sep 2024, 6:30 pm` |
+| `2 weeks ago` | `10 Jun 2026, 8:00 am` |
+| `Yesterday` | `8 Jul 2026, 5:42 pm` |
 
-Install the script from GreasyFork.
+---
 
-*(Link will be added after publishing.)*
+## 🚀 Quick Installation
+
+1. Install a userscript manager extension for your browser:
+   * [Violentmonkey](https://violentmonkey.github.io/) (*Recommended*)
+   * [Tampermonkey](https://www.tampermonkey.net/)
+   * [Greasemonkey](https://www.greasespot.net/)
+
+2. Install the userscript:
+
+<p align="center">
+  <a href="https://greasyfork.org/en/scripts/588066">
+    <img src="https://img.shields.io/badge/Install%20from-GreasyFork-800000?style=for-the-badge&logo=greasyfork" alt="Install from GreasyFork">
+  </a>
+</p>
 
 ---
 
@@ -85,58 +116,39 @@ Inside the script:
 var USE_12_HOUR = true;
 ```
 
-Set
-
-```javascript
-true
-```
-
-for
-
-```
-10 May 2025, 10:16 pm
-```
-
-or
-
-```javascript
-false
-```
-
-for
-
-```
-10 May 2025, 22:16
-```
+| Value | Output |
+|------|--------|
+| `true` | `10 May 2025, 10:16 pm` |
+| `false` | `10 May 2025, 22:16` |
 
 ---
 
 ## How it Works
 
-The script requests each video's upload date directly from YouTube's internal API using your existing browser session.
+The userscript retrieves each video's upload date directly from YouTube's internal API using your existing browser session.
 
-It then replaces YouTube's relative timestamps with precise upload dates while keeping the page layout unchanged.
+It then replaces YouTube's relative timestamps (such as "2 years ago") with locale-aware absolute dates while preserving YouTube's original layout.
 
-To keep the script lightweight and responsive:
+To remain lightweight, the script uses:
 
-- Upload dates are cached
-- Duplicate requests are avoided
-- Dynamic page navigation is fully supported
+- Smart response caching
+- Duplicate request prevention
+- Automatic support for YouTube's dynamic page navigation
 
 ---
 
 ## Compatibility
 
-Works with:
-
-- ✔ Home
-- ✔ Search
-- ✔ Watch
-- ✔ Playlists
-- ✔ Shorts
-- ✔ Channel pages
-- ✔ Recommendations
-- ✔ End screens
+| YouTube Section | Supported |
+|-----------------|-----------|
+| Home | ✅ |
+| Search | ✅ |
+| Watch | ✅ |
+| Playlists | ✅ |
+| Shorts | ✅ |
+| Channel Videos | ✅ |
+| Recommendations | ✅ |
+| End Screen | ✅ |
 
 Compatible with:
 
@@ -161,28 +173,14 @@ All requests are made directly to YouTube.
 
 ## Acknowledgements
 
-This project was inspired by earlier community userscripts that explored replacing YouTube's relative upload dates with precise upload dates.
+This project was inspired by the following community userscripts:
 
-Special thanks to the authors of the following projects:
+- **[YouTube Date Display](https://greasyfork.org/scripts/561532)** by **kor-bim**
+- **[YouTube Precise Date Display Fixed](https://greasyfork.org/en/scripts/567066)** by **Homebrew Runner**
 
-- **[YouTube Date Display](https://greasyfork.org/scripts/561532)** — by **kor-bim**
-- **[YouTube Precise Date Display Fixed](https://greasyfork.org/en/scripts/567066)** — by **Homebrew Runner**
+Their work helped inspire the development of this userscript. This project has since been independently rewritten and expanded with broader YouTube support, locale-aware formatting, improved caching, and compatibility with modern YouTube layouts.
 
-Their work laid the foundation for this project and inspired many of the ideas implemented here.
-
-This userscript has since been extensively expanded and improved with features including:
-
-- Locale-aware date formatting
-- Configurable 12-hour / 24-hour time display
-- Smart request caching and duplicate request prevention
-- Support for Home, Search, Channel Videos, and Playlists
-- Support for Playlist cards
-- Support for Shorts player and Shorts thumbnails
-- Support for End screen recommendations
-- Compact dates in the Watch page right sidebar
-- Improved compatibility with YouTube's modern layouts and dynamic navigation
-
-Thank you to both authors for their contributions to the userscript community.
+Many thanks to both authors for their contributions to the userscript community.
 
 ---
 
@@ -200,4 +198,8 @@ If YouTube changes its layout and something breaks, feel free to open an [issue]
 
 ---
 
+---
+
+<p align="center">
 Made with ❤️ for YouTube users who prefer actual upload dates.
+</p>
