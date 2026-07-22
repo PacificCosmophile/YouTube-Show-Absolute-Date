@@ -1,7 +1,7 @@
 <h1 align="center">YouTube Show Absolute Date</h1>
 
 <p align="center">
-  Replace YouTube's vague relative upload dates (<b>"2 years ago"</b>) with precise, locale-aware <b>absolute dates</b> across the entire platform.
+  Replaces YouTube's vague relative upload dates (<b>"2 years ago"</b>) with precise, locale-aware <b>absolute dates</b> across the entire platform.
 </p>
 
 <p align="center">
@@ -14,7 +14,6 @@
   <img src="https://img.shields.io/badge/license-MIT-green" alt="License">
   <img src="https://img.shields.io/badge/platform-YouTube-red?logo=youtube" alt="Platform">
   <img src="https://img.shields.io/badge/userscript-Violentmonkey%20%7C%20Greasemonkey%20%7C%20Tampermonkey-blue" alt="Userscript Engine">
-  <img src="https://img.shields.io/badge/version-1.0-orange" alt="Version">
 </p>
 
 ---
@@ -149,7 +148,7 @@ The userscript fetches precise upload timestamps directly from YouTube's interna
 
 ### Supported Browsers
 
--   ✅ **Chromium**, **Firefox**, **Edge**, **Helium**, **Waterfox**, **Floorp** (via Violentmonkey/Greasemonkey/Tampermonkey)
+-   ✅ **Chromium**, **Firefox**, **Edge**, **Helium**, **Waterfox**, **Floorp**, **etc.** (via Violentmonkey/Greasemonkey/Tampermonkey)
 
 🔒 Privacy
 ----------
