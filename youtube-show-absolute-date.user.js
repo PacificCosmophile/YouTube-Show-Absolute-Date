@@ -2,7 +2,7 @@
 // @name         YouTube Show Absolute Date
 // @namespace    https://github.com/PacificCosmophile
 // @description  Replaces relative upload dates ("2 years ago") with absolute dates across YouTube.
-// @version      1.0
+// @version      1.1
 // @author       PacificCosmophile+Vibecoded
 // @license      MIT
 // @match        https://www.youtube.com/*
@@ -16,10 +16,10 @@
     "use strict";
 
     /*
-        * YouTube Show Absolute Date
-        * Replaces YouTube's relative upload dates
-        * with locale-aware absolute dates.
-    */
+     * YouTube Show Absolute Date
+     * Replaces YouTube's relative upload dates
+     * with locale-aware absolute dates.
+     */
 
     // ====== USER SETTINGS ======
     // Set to true for 12-hour time (3:06 PM), false for 24-hour time (15:06)
@@ -31,12 +31,17 @@
     var scanTimeout = null;
     var lastUrl = location.href;
 
+    var fullFormatter = null;
+    var cardFormatter = null;
+
+    var authCache = null;
+    var authCacheTime = 0;
+
     // ---------- Date formatting ----------
     function getLocales() {
         var langs =
             Array.isArray(navigator.languages) && navigator.languages.length ?
-            Array.from(navigator.languages) :
-            [navigator.language || "en-US"];
+            Array.from(navigator.languages) : [navigator.language || "en-US"];
         try {
             if (typeof window.ytcfg !== "undefined" && typeof window.ytcfg.get === "function") {
                 var hl = window.ytcfg.get("HL");
@@ -46,17 +51,36 @@
         return langs;
     }
 
+    function getCardFormatter() {
+        if (!cardFormatter) {
+            cardFormatter = new Intl.DateTimeFormat(getLocales(), {
+                day: "numeric",
+                month: "short",
+                year: "numeric"
+            });
+        }
+        return cardFormatter;
+    }
+
+    function getFullFormatter() {
+        if (!fullFormatter) {
+            fullFormatter = new Intl.DateTimeFormat(getLocales(), {
+                day: "numeric",
+                month: "short",
+                year: "numeric",
+                hour: "numeric",
+                minute: "2-digit",
+                hour12: USE_12_HOUR
+            });
+        }
+        return fullFormatter;
+    }
+
     function formatCardDate(dateLike) {
         var d = new Date(dateLike);
         if (isNaN(d.getTime())) return null;
 
-        var locales = getLocales();
-
-        return new Intl.DateTimeFormat(locales, {
-            day: "numeric",
-            month: "short",
-            year: "numeric"
-        }).format(d);
+        return getCardFormatter().format(d);
     }
 
     function formatFullDate(dateLike) {
@@ -65,14 +89,7 @@
 
         var locales = getLocales();
 
-        var formatted = new Intl.DateTimeFormat(locales, {
-            day: "numeric",
-            month: "short",
-            year: "numeric",
-            hour: "numeric",
-            minute: "2-digit",
-            hour12: USE_12_HOUR
-        }).format(d);
+        var formatted = getFullFormatter().format(d);
 
         return formatted
             .replace(/\bAM\b/, "am")
@@ -118,6 +135,10 @@
 
     // ---------- SAPISIDHASH auth for YouTube API ----------
     async function generateSAPISIDHASH() {
+        // Reuse the generated auth header for 30 seconds.
+        if (authCache && Date.now() - authCacheTime < 30000) {
+            return authCache;
+        }
         var sapisid = null;
         var cookies = document.cookie.split(";");
         for (var i = 0; i < cookies.length; i++) {
@@ -140,7 +161,10 @@
             var hash = hashArray.map(function(b) {
                 return b.toString(16).padStart(2, "0");
             }).join("");
-            return "SAPISIDHASH " + timestamp + "_" + hash;
+            authCache = "SAPISIDHASH " + timestamp + "_" + hash;
+            authCacheTime = Date.now();
+
+            return authCache;
         } catch (_) {
             return null;
         }
@@ -340,12 +364,54 @@
         label.textContent = formatFullDate(dateStr);
     }
 
+    // ---------- Find the publish date span on the watch page ----------
+    function findWatchPageDateSpan(container) {
+        if (!container) return null;
+
+        var spans = container.querySelectorAll("span");
+
+        for (var i = 0; i < spans.length; i++) {
+            var text = spans[i].textContent.trim();
+
+            // Skip empty spans
+            if (!text) continue;
+
+            // Skip hashtags
+            if (text.startsWith("#")) continue;
+
+            // Skip views
+            if (/view/i.test(text)) continue;
+
+            // Relative dates
+            if (
+                /\bago\b/i.test(text) ||
+                /\bminute/i.test(text) ||
+                /\bhour/i.test(text) ||
+                /\bday/i.test(text) ||
+                /\bweek/i.test(text) ||
+                /\bmonth/i.test(text) ||
+                /\byear/i.test(text)
+            ) {
+                return spans[i];
+            }
+
+            // Already absolute date
+            if (
+                /\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\b/i.test(text)
+            ) {
+                return spans[i];
+            }
+        }
+
+        return null;
+    }
+
     // ---------- scan ----------
     function runSmartScan() {
         // [A] Watch page main date
         var mainContainer = document.querySelector("#info.ytd-watch-info-text");
         if (mainContainer) {
-            var dateTarget = mainContainer.querySelector("span:nth-child(3)");
+            var dateTarget = findWatchPageDateSpan(mainContainer);
             var vId = new URLSearchParams(window.location.search).get("v");
             if (dateTarget && vId) overwriteUI(dateTarget, vId, true);
         }
@@ -495,26 +561,38 @@
         setTimeout(runSmartScan, 300);
         setTimeout(runSmartScan, 1500);
         setTimeout(runSmartScan, 4000);
+
+        lastUrl = location.href;
+
+        new MutationObserver(function() {
+            if (location.href !== lastUrl) {
+                lastUrl = location.href;
+                scheduleScan(500);
+            }
+        }).observe(document.documentElement, {
+            childList: true,
+            subtree: true
+        });
+    }
+
+    function scheduleScan(delay) {
+        if (scanTimeout) clearTimeout(scanTimeout);
+        scanTimeout = setTimeout(runSmartScan, delay || 0);
     }
 
     // ---------- navigation listeners ----------
     window.addEventListener("yt-navigate-finish", function() {
-        setTimeout(runSmartScan, 500);
-    });
-    window.addEventListener("yt-page-data-updated", function() {
-        setTimeout(runSmartScan, 500);
-    });
-    window.addEventListener("popstate", function() {
-        setTimeout(runSmartScan, 500);
+        scheduleScan(500);
     });
 
-    // URL polling fallback
-    setInterval(function() {
-        if (location.href !== lastUrl) {
-            lastUrl = location.href;
-            setTimeout(runSmartScan, 500);
-        }
-    }, 1000);
+    window.addEventListener("yt-page-data-updated", function() {
+        scheduleScan(500);
+    });
+
+    window.addEventListener("popstate", function() {
+        scheduleScan(500);
+    });
+
 
     // ---------- start ----------
     if (document.body) {
