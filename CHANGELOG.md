@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.2
+
+### Improved
+- Added customized icon
+
 ## 1.1
 
 ### Improved
